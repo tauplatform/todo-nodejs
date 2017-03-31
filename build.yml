@@ -1,0 +1,31 @@
+
+sdkversion: 5.5.0
+name: todo
+version: 1.0
+vendor: rhomobile
+rho_app_id: com.rhomobile.todo
+build: debug
+applog: rholog.txt
+
+nodejs_application: true
+
+
+iphone:
+  configuration: Release
+  sdk: latest
+  ## Note: provisionprofile can be defined as name or UUID - if you defined provisionprofile then codesignidentity defined automatically if you not defined it in this build.yml
+  #provisionprofile:
+  BundleIdentifier: com.rhomobile.todo
+  BundleURLScheme: todo
+
+android:
+  version: 4.1.0
+  ## Note: in order to simplify debugging only app messages and system channels with priority informative and higher, and any errors are enabled by default
+  logcatFilter: APP:I StrictMode:I DEBUG:I *:E
+
+extensions: ["nodejs"]
+
+rhobundle:
+  exclude_items:
+  - thumb.db
+
