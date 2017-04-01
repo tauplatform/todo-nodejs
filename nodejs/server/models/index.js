@@ -7,12 +7,7 @@ var config = require(path.join(__dirname, '..', 'config', 'config.json'))[env];
 if (process.env.DATABASE_URL) {
     var sequelize = new Sequelize(process.env.DATABASE_URL, config);
 } else {
-    Rho.Log.info("======================================================================================", "config");
-    Rho.Log.info(Rho.Application.userFolder, "userFolder");
-    Rho.Log.info(config.storage.toString(), "config");
-
     var dbPath = path.join(Rho.Application.userFolder, config.storage);
-    Rho.Log.info(dbPath, "dbPath");
     var sequelize = new Sequelize(dbPath, config.username, config.password, config);
 }
 
