@@ -2,9 +2,9 @@ var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
-var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var session = require('express-session');
+
+var models = require("./models");
 
 var serverPort = Rho.System.NodejsServerPort;
 
@@ -30,14 +30,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(cookieParser());
-app.use(session({
-    cookieName: 'session',
-    secret: 'secret',
-    duration: 30 * 60 * 1000,
-    activeDuration: 5 * 60 * 1000,
-    saveUninitialized: false
-}));
 
 app.use('/', index);
 app.use('/users', users);
@@ -61,10 +53,14 @@ app.use(function (err, req, res, next) {
     res.render('error');
 });
 
-var server = app.listen(serverPort, function () {
-    Rho.Log.info("Express server is started. (port: " + serverPort + ")", "Node.js JS");
-    // application must be inform RHomobile platform about starting of http server !
-    Mobile.httpServerStarted();
-});
+models.sequelize.sync().then(function () {
+    /**
+    * Listen on provided port, on all network interfaces.
+    */
+    var server = app.listen(serverPort, function () {
+        Rho.Log.info("Express server is started. (port: " + serverPort + ")", "Node.js JS");
+        // application must be inform RHomobile platform about starting of http server !
+        Mobile.httpServerStarted();
+    });
 
-module.exports = app;
+});
