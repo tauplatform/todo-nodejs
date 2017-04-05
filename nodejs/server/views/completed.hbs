@@ -4,31 +4,7 @@
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><a href="/tasks/active" class="btn btn-block">Active</a></div>
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><a href="/tasks/completed" class="btn btn-block  bg-primary">Completed</a></div>
 </div>
-<form class="form-inline" action="/tasks/create" method="post">
-    <div class="form-group">
-        <input type="task" class="form-control" id="task"name="title" placeholder="Enter new task here">
-    </div>
-    <button type="submit" class="btn btn-default">Add</button>
-</form>
-<ul class="list-group">
-    {{#each tasks}}
-        <li class="list-group-item">
-            <a href="/tasks/{{id}}/{{#if completed}}uncomplete{{else}}complete{{/if}}">
-                <div style="float: left; width: 20px;">
-                    {{#if completed}}
-                        <span class="glyphicon glyphicon-check" style="color: green;"></span>
-                    {{else}}
-                        <span class="glyphicon glyphicon-unchecked" style="color: black;"></span>
-                    {{/if}}
-                </div>
-            </a>
-            <div style="float: left; width: auto">{{title}}</div>
-            <a href="/tasks/{{id}}/destroy">
-                <div style="float: right; width: 20px;">
-                    <span class="glyphicon glyphicon-remove" style="color: red;"></span>
-                </div>
-            </a>
-            <div style="clear:both"></div>
-        </li>
-    {{/each}}
-</ul>
+
+{{> adding_task_form}}
+
+{{> task_list}}
