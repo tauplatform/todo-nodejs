@@ -1,7 +1,8 @@
+{{@root.filter}}
 <ul class="list-group">
     {{#each tasks}}
         <li class="list-group-item">
-            <a href="/tasks/{{id}}/{{#if completed}}uncomplete{{else}}complete{{/if}}">
+            <a href="/tasks/{{id}}/{{#if completed}}uncomplete{{else}}complete{{/if}}?filter={{../filter}}">
                 <div style="float: left; width: 20px;">
                     {{#if completed}}
                         <span class="glyphicon glyphicon-check" style="color: green;"></span>
@@ -11,7 +12,7 @@
                 </div>
             </a>
             <div style="float: left; width: auto">{{title}}</div>
-            <a href="/tasks/{{id}}/destroy">
+            <a href="/tasks/{{id}}/destroy?filter={{../filter}}">
                 <div style="float: right; width: 20px;">
                     <span class="glyphicon glyphicon-remove" style="color: red;"></span>
                 </div>

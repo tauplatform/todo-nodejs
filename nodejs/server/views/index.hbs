@@ -3,9 +3,10 @@
 <div class="row">
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><a href="/tasks" class="btn btn-block bg-primary">All</a></div>
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><a href="/tasks/active" class="btn btn-block">Active</a></div>
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><a href="/tasks/completed" class="btn btn-block">Completed</a></div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><a href="/tasks/completed" class="btn btn-block">Completed</a>
+    </div>
 </div>
 
-{{> adding_task_form taskFilter="all"}}
+{{> adding_task_form filter="all"}}
 
-{{> task_list}}
+{{> task_list filter="all"}}

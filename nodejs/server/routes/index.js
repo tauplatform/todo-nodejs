@@ -43,7 +43,7 @@ router.post("/tasks/create", function (req, res, next) {
         title: req.body.title,
         completed: false
     }).then(function () {
-        var filter = req.body.taskFilter;
+        var filter = req.body.filter;
         res.redirect("/tasks/" + filter);
     });
 });
@@ -56,7 +56,7 @@ router.get("/tasks/:task_id/complete", function (req, res) {
     }).then(function (task) {
         task.completed = true;
         task.save({fields: ["completed"]}).then(function () {
-            res.redirect("/tasks/all");
+            res.redirect("/tasks/" + req.query.filter);
         })
     });
 });
@@ -69,8 +69,7 @@ router.get("/tasks/:task_id/uncomplete", function (req, res) {
     }).then(function (task) {
         task.completed = false;
         task.save({fields: ["completed"]}).then(function () {
-            //res.redirect("/tasks/all");
-            next();
+            res.redirect("/tasks/" + req.query.filter);
         })
     });
 });
@@ -81,7 +80,7 @@ router.get("/tasks/:task_id/destroy", function (req, res) {
             id: req.params.task_id
         }
     }).then(function () {
-        res.redirect("/tasks/all");
+        res.redirect("/tasks/" + req.query.filter);
     });
 });
 
