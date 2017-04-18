@@ -8,7 +8,10 @@ if (process.env.DATABASE_URL) {
     var sequelize = new Sequelize(process.env.DATABASE_URL, config);
 } else {
     var dbPath = path.join(Rho.Application.userFolder, config.storage);
-    var sequelize = new Sequelize(dbPath, null, null, {dialect: 'sqlite'});
+    //console.log("$$$ DBPATH = "+dbPath);
+    config.storage = dbPath;
+    //var sequelize = new Sequelize(dbPath, null, null, {dialect: 'sqlite'});
+    var sequelize = new Sequelize(dbPath, null, null, config);
 }
 
 var db = {};
