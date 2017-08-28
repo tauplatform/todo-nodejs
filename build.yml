@@ -2,7 +2,7 @@
 sdkversion: 5.5.0
 name: todo
 version: 1.0
-vendor: rhomobile
+vendor: tau
 rho_app_id: com.rhomobile.todo
 build: debug
 applog: rholog.txt
